@@ -8,13 +8,12 @@ Given a set of poker cards,
 #hands to be tested
 straight_flush_hand = ["2H", "AH", "3H", "4H", "5H"]
 straight_flush_hand2 = ["KH", "JH", "AH", "0H", "QH"]
-two_pair_hand = ["AS", "AH", "KD", "JD", "7C"]
+one_pair_hand = ["AS", "AH", "KD", "JD", "7C"]
 
 def check_for_straight_flush(hand):
   #list to check against for straight
   number = ['234567890JQKA'.index(num) for num, suit in hand]
   sorted_number = number.sort()
-  # print number # sorted hand list
   
   #getting unique elements in list
   suits = [suit for num, suit in hand]
@@ -37,7 +36,7 @@ def check_for_straight_flush(hand):
 	•	Write a unit test program to verify your implementation. 
 
 def straight_flush_test():
-	assert check_for_straight_flush(two_pair_hand) == "Sorry, no straight flush..."
+	assert check_for_straight_flush(one_pair_hand) == "Sorry, no straight flush..."
 	assert check_for_straight_flush(straight_flush_hand) == "You have a straight flush!"
 	assert check_for_straight_flush(straight_flush_hand2) == "You have a straight flush!"
 	return "works as intended"
