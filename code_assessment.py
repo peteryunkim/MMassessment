@@ -49,5 +49,40 @@ Challenge 2.
 Run-length encoding (RLE) is a very simple form of lossless data compression in which runs of data (that is, sequences in which the same data value occurs in many consecutive data elements) are stored as a single data value and count, rather than as the original run. For example, string "abbccccddd" can be represented as "1a2b4c3d" in RLE. A Compact-Run-length-Encoding is a variation to the RLE that it encodes run lengths only for runs of two or more characters only. In the above example, "abbccccddd" is encoded as "a2b4c3d" in the compact form.
 
 	•	Write a simple function to expand a Compact-RLE string;
+
+def reverse_compact_rle(string):
+  count = 0
+  
+  #list of letters to join at the end
+  letters_only = []
+  
+  #loop to iterate through string
+  while count != len(string):
+    if string[count].isdigit():
+    	
+    	#if number, have function append letter "number" amount of times
+      [letters_only.append(string[count + 1]) for _ in range(int(string[count]))]
+    
+    #if letter is not preceded by number, append letter
+    elif string[count].isalpha() and not string[count-1].isdigit():
+      letters_only.append(string[count])
+    
+    #increase count to prevent exceeding call stack
+    count+= 1
+  
+  return "".join(letters_only)
+  
+
 	•	Write a unit test program to verify your implementation.
 
+def reverse_compact_rle_test():
+  assert reverse_compact_rle('1a2b3c4de') == "abbcccdddde"
+  assert reverse_compact_rle('5eas2d') == "eeeeeasdd"
+  assert reverse_compact_rle('e2adsf') == "eaadsf"
+  return 'pass test'
+  
+print reverse_compact_rle('1a2b3c4de')
+print reverse_compact_rle('5eas2d')
+print reverse_compact_rle('e2adsf')
+
+print reverse_compact_rle_test()
